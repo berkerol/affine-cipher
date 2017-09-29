@@ -21,7 +21,7 @@ public class AffineCipher {
         String title = "AffineCipher";
         Scanner input = null;
         try {
-            input = new Scanner(new File("AffineCipherConfiguration.ini"));
+            input = new Scanner(new File("AffineCipherConfiguration.ini"), "UTF-8");
         }
         catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex, title, JOptionPane.ERROR_MESSAGE);
