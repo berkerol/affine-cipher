@@ -1,0 +1,8 @@
+body {
+  background: #eee;
+}
+
+.buttons {
+  left: 50%;
+  transform: translateX(-50%);
+}

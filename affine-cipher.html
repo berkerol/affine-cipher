@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Affine Cipher</title>
+  <meta name="description" content="Simple & easy-to-use Affine Cipher GUI">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="affine-cipher.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="modal fade" id="settings">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Settings</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-inline row">
+            <div class="form-group col-xs-4 col-md-3 col-lg-2 col-xs-offset-0 col-md-offset-2 col-lg-offset-3">
+              <label for="dmul">Multiplicative key for digits</label>
+              <input type="text" class="form-control" id="dmul" size="5">
+            </div>
+            <div class="form-group col-xs-4 col-md-3 col-lg-2">
+              <label for="umul">Multiplicative key for uppercase</label>
+              <input type="text" class="form-control" id="umul" size="5">
+            </div>
+            <div class="form-group col-xs-4 col-md-3 col-lg-2">
+              <label for="lmul">Multiplicative key for lowercase</label>
+              <input type="text" class="form-control" id="lmul" size="5">
+            </div>
+          </form>
+          <form class="form-inline row">
+            <div class="form-group col-xs-4 col-md-3 col-lg-2 col-xs-offset-0 col-md-offset-2 col-lg-offset-3">
+              <label for="dadd">Additive key for digits</label>
+              <input type="text" class="form-control" id="dadd" size="5">
+            </div>
+            <div class="form-group col-xs-4 col-md-3 col-lg-2">
+              <label for="uadd">Additive key for uppercase</label>
+              <input type="text" class="form-control" id="uadd" size="5">
+            </div>
+            <div class="form-group col-xs-4 col-md-3 col-lg-2">
+              <label for="ladd">Additive key for lowercase</label>
+              <input type="text" class="form-control" id="ladd" size="5">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-info" onclick="save()" accesskey="a" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk"></span> S<span style="text-decoration: underline">a</span>ve</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form class="form row">
+    <div class="form-group col-xs-8 col-xs-offset-2">
+      <textarea class="form-control" id="text" rows="20" cols="50"></textarea>
+    </div>
+  </form>
+  <div class="btn-group buttons">
+    <a class="btn btn-lg btn-success" onclick="encipherText()" accesskey="e"><span class="glyphicon glyphicon-lock"></span> <span style="text-decoration: underline">E</span>ncrypt</a>
+    <a class="btn btn-lg btn-info" accesskey="s" data-toggle="modal" data-target="#settings"><span class="glyphicon glyphicon-cog"></span> <span style="text-decoration: underline">S</span>ettings</a>
+    <a class="btn btn-lg btn-warning" onclick="decipherText()" accesskey="d"><span class="glyphicon glyphicon-file"></span> <span style="text-decoration: underline">D</span>ecrypt</a>
+  </div>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-122994978-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script src="affine-cipher.js"></script>
+</body>
+
+</html>
