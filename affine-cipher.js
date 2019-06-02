@@ -22,10 +22,10 @@ function save () {
 }
 
 function encipherText () {
-  let plaintext = document.getElementById('text').value;
+  const plaintext = document.getElementById('text').value;
   let ciphertext = '';
   for (let i = 0; i < plaintext.length; i++) {
-    let char = plaintext.charCodeAt(i);
+    const char = plaintext.charCodeAt(i);
     if (char >= 48 && char <= 57) {
       ciphertext += String.fromCharCode(encipher(char, 48, 10, digitsMul, digitsAdd));
     } else if (char >= 65 && char <= 90) {
@@ -40,10 +40,10 @@ function encipherText () {
 }
 
 function decipherText () {
-  let ciphertext = document.getElementById('text').value;
+  const ciphertext = document.getElementById('text').value;
   let plaintext = '';
   for (let i = 0; i < ciphertext.length; i++) {
-    let char = ciphertext.charCodeAt(i);
+    const char = ciphertext.charCodeAt(i);
     if (char >= 48 && char <= 57) {
       plaintext += String.fromCharCode(decipher(char, 48, 10, digitsMul, digitsAdd));
     } else if (char >= 65 && char <= 90) {
