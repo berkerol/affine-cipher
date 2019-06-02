@@ -12,16 +12,16 @@ document.getElementById('uadd').value = uppercaseAdd;
 document.getElementById('lmul').value = lowercaseMul;
 document.getElementById('ladd').value = lowercaseAdd;
 
-function save () {
+window.save = function () {
   digitsMul = +document.getElementById('dmul').value;
   digitsAdd = +document.getElementById('dadd').value;
   uppercaseMul = +document.getElementById('umul').value;
   uppercaseAdd = +document.getElementById('uadd').value;
   lowercaseMul = +document.getElementById('lmul').value;
   lowercaseAdd = +document.getElementById('ladd').value;
-}
+};
 
-function encipherText () {
+window.encipherText = function () {
   const plaintext = document.getElementById('text').value;
   let ciphertext = '';
   for (let i = 0; i < plaintext.length; i++) {
@@ -37,9 +37,9 @@ function encipherText () {
     }
   }
   document.getElementById('text').value = ciphertext;
-}
+};
 
-function decipherText () {
+window.decipherText = function () {
   const ciphertext = document.getElementById('text').value;
   let plaintext = '';
   for (let i = 0; i < ciphertext.length; i++) {
@@ -55,7 +55,7 @@ function decipherText () {
     }
   }
   document.getElementById('text').value = plaintext;
-}
+};
 
 function encipher (char, alphabetBeginning, alphabetLength, coefficient, constant) {
   return (((char - alphabetBeginning) * coefficient + constant) % alphabetLength) + alphabetBeginning;
