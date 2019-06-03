@@ -6,3 +6,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
+
+input[type="number"] {
+  width: 5em;
+}
