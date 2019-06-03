@@ -5,7 +5,7 @@
 [![ECMAScript](https://img.shields.io/badge/ECMAScript-latest-brightgreen.svg)](https://www.ecma-international.org/ecma-262)
 [![license](https://img.shields.io/badge/license-GNU%20GPL%20v3.0-blue.svg)](https://github.com/berkerol/affine-cipher/blob/master/LICENSE)
 
-Simple & easy-to-use Affine Cipher GUI. It allows multi-time enciphering & deciphering. It uses 3 different key pairs for 3 different alphabets: digits, uppercase & lowercase letters. Characters that are not in these 3 alphabets are not touched. You can view it [here](https://berkerol.github.io/affine-cipher/affine-cipher.html).
+Simple & easy-to-use Affine Cipher GUI. It allows multi-time enciphering & deciphering. It uses 3 different key pairs for 3 different alphabets: digits, uppercase & lowercase letters. Characters that are not in these 3 alphabets are not touched. Press _R_ to reset settings to defaults. You can view it [here](https://berkerol.github.io/affine-cipher/affine-cipher.html).
 
 ## Contribution
 

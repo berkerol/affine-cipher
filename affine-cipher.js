@@ -1,16 +1,27 @@
-let digitsMul = 13;
-let digitsAdd = 3;
-let uppercaseMul = 17;
-let uppercaseAdd = 5;
-let lowercaseMul = 19;
-let lowercaseAdd = 7;
+const defaultDigitsMul = 13;
+const defaultDigitsAdd = 3;
+const defaultUppercaseMul = 17;
+const defaultUppercaseAdd = 5;
+const defaultLowercaseMul = 19;
+const defaultLowercaseAdd = 7;
+let digitsMul = defaultDigitsMul;
+let digitsAdd = defaultDigitsAdd;
+let uppercaseMul = defaultUppercaseMul;
+let uppercaseAdd = defaultUppercaseAdd;
+let lowercaseMul = defaultLowercaseMul;
+let lowercaseAdd = defaultLowercaseAdd;
 
-document.getElementById('dmul').value = digitsMul;
-document.getElementById('dadd').value = digitsAdd;
-document.getElementById('umul').value = uppercaseMul;
-document.getElementById('uadd').value = uppercaseAdd;
-document.getElementById('lmul').value = lowercaseMul;
-document.getElementById('ladd').value = lowercaseAdd;
+resetInputs();
+document.addEventListener('keyup', keyUpHandler);
+
+function resetInputs () {
+  document.getElementById('dmul').value = digitsMul;
+  document.getElementById('dadd').value = digitsAdd;
+  document.getElementById('umul').value = uppercaseMul;
+  document.getElementById('uadd').value = uppercaseAdd;
+  document.getElementById('lmul').value = lowercaseMul;
+  document.getElementById('ladd').value = lowercaseAdd;
+}
 
 window.save = function () {
   digitsMul = +document.getElementById('dmul').value;
@@ -70,4 +81,16 @@ function decipher (char, alphabetBeginning, alphabetLength, coefficient, constan
     i += alphabetLength;
   }
   return i / coefficient + alphabetBeginning;
+}
+
+function keyUpHandler (e) {
+  if (e.keyCode === 82) {
+    digitsMul = defaultDigitsMul;
+    digitsAdd = defaultDigitsAdd;
+    uppercaseMul = defaultUppercaseMul;
+    uppercaseAdd = defaultUppercaseAdd;
+    lowercaseMul = defaultLowercaseMul;
+    lowercaseAdd = defaultLowercaseAdd;
+    resetInputs();
+  }
 }
