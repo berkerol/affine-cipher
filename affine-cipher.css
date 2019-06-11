@@ -2,11 +2,11 @@ body {
   background: #eee;
 }
 
-.buttons {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 input[type="number"] {
   width: 5em;
+}
+
+.btn-group-center {
+  left: 50%;
+  transform: translateX(-50%);
 }
