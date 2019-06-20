@@ -11,6 +11,28 @@ let uppercaseAdd = defaultUppercaseAdd;
 let lowercaseMul = defaultLowercaseMul;
 let lowercaseAdd = defaultLowercaseAdd;
 
+const form = document.getElementsByTagName('form')[0];
+for (const row of [[['Multiplicative key for digits', 'dmul'], ['Multiplicative key for uppercase', 'umul'], ['Multiplicative key for lowercase', 'lmul']], [['Additive key for digits', 'dadd'], ['Additive key for uppercase', 'uadd'], ['Additive key for lowercase', 'ladd']]]) {
+  const divRow = document.createElement('div');
+  divRow.className = 'form-row';
+  for (const col of row) {
+    const label = document.createElement('label');
+    label.htmlFor = col[1];
+    label.innerHTML = col[0];
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.className = 'form-control';
+    input.id = col[1];
+    input.min = '1';
+    input.max = '99999';
+    const divCol = document.createElement('div');
+    divCol.className = 'form-group col';
+    divCol.appendChild(label);
+    divCol.appendChild(input);
+    divRow.appendChild(divCol);
+  }
+  form.appendChild(divRow);
+}
 resetInputs();
 document.addEventListener('keyup', keyUpHandler);
 
