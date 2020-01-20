@@ -4,12 +4,12 @@ const defaultUppercaseMul = 17;
 const defaultUppercaseAdd = 5;
 const defaultLowercaseMul = 19;
 const defaultLowercaseAdd = 7;
-let digitsMul = defaultDigitsMul;
-let digitsAdd = defaultDigitsAdd;
-let uppercaseMul = defaultUppercaseMul;
-let uppercaseAdd = defaultUppercaseAdd;
-let lowercaseMul = defaultLowercaseMul;
-let lowercaseAdd = defaultLowercaseAdd;
+let digitsMul;
+let digitsAdd;
+let uppercaseMul;
+let uppercaseAdd;
+let lowercaseMul;
+let lowercaseAdd;
 
 const form = document.getElementsByTagName('form')[0];
 for (const row of [[['Multiplicative key for digits', 'dmul'], ['Multiplicative key for uppercase', 'umul'], ['Multiplicative key for lowercase', 'lmul']], [['Additive key for digits', 'dadd'], ['Additive key for uppercase', 'uadd'], ['Additive key for lowercase', 'ladd']]]) {
@@ -37,6 +37,12 @@ resetInputs();
 document.addEventListener('keyup', keyUpHandler);
 
 function resetInputs () {
+  digitsMul = defaultDigitsMul;
+  digitsAdd = defaultDigitsAdd;
+  uppercaseMul = defaultUppercaseMul;
+  uppercaseAdd = defaultUppercaseAdd;
+  lowercaseMul = defaultLowercaseMul;
+  lowercaseAdd = defaultLowercaseAdd;
   document.getElementById('dmul').value = digitsMul;
   document.getElementById('dadd').value = digitsAdd;
   document.getElementById('umul').value = uppercaseMul;
@@ -107,12 +113,6 @@ function decipher (char, alphabetBeginning, alphabetLength, coefficient, constan
 
 function keyUpHandler (e) {
   if (e.keyCode === 82) {
-    digitsMul = defaultDigitsMul;
-    digitsAdd = defaultDigitsAdd;
-    uppercaseMul = defaultUppercaseMul;
-    uppercaseAdd = defaultUppercaseAdd;
-    lowercaseMul = defaultLowercaseMul;
-    lowercaseAdd = defaultLowercaseAdd;
     resetInputs();
   }
 }
