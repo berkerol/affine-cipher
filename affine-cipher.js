@@ -1,3 +1,4 @@
+/* global createButtonGroup createModalButton createModal keyUpHandler */
 const defaultDigitsMul = 13;
 const defaultDigitsAdd = 3;
 const defaultUppercaseMul = 17;
@@ -11,28 +12,11 @@ let uppercaseAdd;
 let lowercaseMul;
 let lowercaseAdd;
 
-const form = document.getElementsByTagName('form')[0];
-for (const row of [[['Multiplicative key for digits', 'dmul'], ['Multiplicative key for uppercase', 'umul'], ['Multiplicative key for lowercase', 'lmul']], [['Additive key for digits', 'dadd'], ['Additive key for uppercase', 'uadd'], ['Additive key for lowercase', 'ladd']]]) {
-  const divRow = document.createElement('div');
-  divRow.className = 'form-row';
-  for (const col of row) {
-    const label = document.createElement('label');
-    label.htmlFor = col[1];
-    label.innerHTML = col[0];
-    const input = document.createElement('input');
-    input.type = 'number';
-    input.className = 'form-control';
-    input.id = col[1];
-    input.min = '1';
-    input.max = '99999';
-    const divCol = document.createElement('div');
-    divCol.className = 'form-group col';
-    divCol.appendChild(label);
-    divCol.appendChild(input);
-    divRow.appendChild(divCol);
-  }
-  form.appendChild(divRow);
-}
+const modalElements = [[['Multiplicative key for digits', 'dmul', 1, 99999, 'number'], ['Multiplicative key for uppercase', 'umul', 1, 99999, 'number'], ['Multiplicative key for lowercase', 'lmul', 1, 99999, 'number']], [['Additive key for digits', 'dadd', 1, 99999, 'number'], ['Additive key for uppercase', 'uadd', 1, 99999, 'number'], ['Additive key for lowercase', 'ladd', 1, 99999, 'number']]];
+const buttonElements = [['success', 'convert(encipher)', 'e', 'lock', '<u>E</u>ncrypt'], ['info', '', 's', 'cog', '<u>S</u>ettings'], ['primary', 'convert(decipher)', 'd', 'unlock', '<u>D</u>ecrypt']];
+const buttonGroup = createButtonGroup('btn-group btn-group-lg btn-group-center mt-3', buttonElements);
+document.getElementsByClassName('container')[0].appendChild(createModalButton(buttonGroup, 1));
+createModal(modalElements);
 resetInputs();
 document.addEventListener('keyup', keyUpHandler);
 
@@ -60,47 +44,29 @@ window.save = function () {
   lowercaseAdd = +document.getElementById('ladd').value;
 };
 
-window.encipherText = function () {
-  const plaintext = document.getElementById('text').value;
-  let ciphertext = '';
-  for (let i = 0; i < plaintext.length; i++) {
-    const char = plaintext.charCodeAt(i);
+window.convert = function (func) {
+  const original = document.getElementById('text').value;
+  let converted = '';
+  for (let i = 0; i < original.length; i++) {
+    const char = original.charCodeAt(i);
     if (char >= 48 && char <= 57) {
-      ciphertext += String.fromCharCode(encipher(char, 48, 10, digitsMul, digitsAdd));
+      converted += String.fromCharCode(func(char, 48, 10, digitsMul, digitsAdd));
     } else if (char >= 65 && char <= 90) {
-      ciphertext += String.fromCharCode(encipher(char, 65, 26, uppercaseMul, uppercaseAdd));
+      converted += String.fromCharCode(func(char, 65, 26, uppercaseMul, uppercaseAdd));
     } else if (char >= 97 && char <= 122) {
-      ciphertext += String.fromCharCode(encipher(char, 97, 26, lowercaseMul, lowercaseAdd));
+      converted += String.fromCharCode(func(char, 97, 26, lowercaseMul, lowercaseAdd));
     } else {
-      ciphertext += String.fromCharCode(char);
+      converted += String.fromCharCode(char);
     }
   }
-  document.getElementById('text').value = ciphertext;
+  document.getElementById('text').value = converted;
 };
 
-window.decipherText = function () {
-  const ciphertext = document.getElementById('text').value;
-  let plaintext = '';
-  for (let i = 0; i < ciphertext.length; i++) {
-    const char = ciphertext.charCodeAt(i);
-    if (char >= 48 && char <= 57) {
-      plaintext += String.fromCharCode(decipher(char, 48, 10, digitsMul, digitsAdd));
-    } else if (char >= 65 && char <= 90) {
-      plaintext += String.fromCharCode(decipher(char, 65, 26, uppercaseMul, uppercaseAdd));
-    } else if (char >= 97 && char <= 122) {
-      plaintext += String.fromCharCode(decipher(char, 97, 26, lowercaseMul, lowercaseAdd));
-    } else {
-      plaintext += String.fromCharCode(char);
-    }
-  }
-  document.getElementById('text').value = plaintext;
-};
-
-function encipher (char, alphabetBeginning, alphabetLength, coefficient, constant) {
+window.encipher = function (char, alphabetBeginning, alphabetLength, coefficient, constant) {
   return (((char - alphabetBeginning) * coefficient + constant) % alphabetLength) + alphabetBeginning;
-}
+};
 
-function decipher (char, alphabetBeginning, alphabetLength, coefficient, constant) {
+window.decipher = function (char, alphabetBeginning, alphabetLength, coefficient, constant) {
   let i = char - alphabetBeginning - constant;
   while (i < 0) {
     i += alphabetLength;
@@ -109,10 +75,4 @@ function decipher (char, alphabetBeginning, alphabetLength, coefficient, constan
     i += alphabetLength;
   }
   return i / coefficient + alphabetBeginning;
-}
-
-function keyUpHandler (e) {
-  if (e.keyCode === 82) {
-    resetInputs();
-  }
-}
+};
